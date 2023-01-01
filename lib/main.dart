@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:osiris/screen/HomeScreen.dart';
+import 'package:osiris/Screens/HomeScreen.dart';
 
 void main() => runApp(MaterialApp(home: App()));
 
