@@ -1,4 +1,4 @@
-package io.arjuningole.osiris.osiris
+package io.arjuningole.osiris
 
 import io.flutter.embedding.android.FlutterActivity
 
