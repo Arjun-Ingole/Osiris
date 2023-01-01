@@ -1,9 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:osiris/Services/auth.dart';
-import 'package:osiris/Services/consts.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
