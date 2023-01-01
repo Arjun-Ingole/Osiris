@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:osiris/Services/auth.dart';
 import 'package:osiris/Services/consts.dart';
 import 'package:provider/provider.dart';
@@ -23,11 +24,10 @@ class LoginScreen extends StatelessWidget {
               Container(
                 height: size.height * 0.3,
               ),
-              Image(
+              GifView.asset(
+                "assets/AuthDuck.gif",
                 width: size.width * 0.60,
-                image: const AssetImage(
-                  "assets/AuthDuck.gif",
-                ),
+                frameRate: 60,
               ),
               Center(
                 child: Container(
