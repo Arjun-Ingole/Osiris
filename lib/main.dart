@@ -1,18 +1,31 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:osiris/Screens/HomeScreen.dart';
+import 'package:osiris/Screens/NavScreen.dart';
+import 'package:osiris/Services/auth.dart';
+import 'package:provider/provider.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp;
-  runApp(MaterialApp(home: App()));
+  await Firebase.initializeApp();
+  runApp(App());
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class App extends StatefulWidget {
+  const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: NavScreen(),
+      ),
+    );
   }
 }
