@@ -12,10 +12,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-        color: Color(0xFF111015),
+        color: background_primary,
         child: SafeArea(
             child: Container(
-          color: Color(0xFF111015),
+          color: background_primary,
           height: size.height,
           width: size.width,
           child: Column(
