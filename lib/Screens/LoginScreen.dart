@@ -45,8 +45,8 @@ class LoginScreen extends StatelessWidget {
                         FontAwesomeIcons.google,
                         color: Colors.white,
                       ),
-                      label: const Text(
-                        "Sign In with Google",
+                      label: Text(
+                        sign_in_text,
                         style: TextStyle(color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
