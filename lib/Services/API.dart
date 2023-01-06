@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:osiris/Models/PopularMovies.dart';
+import 'package:osiris/Services/key.dart';
 
 class APIService {
   final Dio _dio = Dio();
   final String baseUrl = 'https://api.themoviedb.org/3';
-  final String apiKey = 'api_key=';
+  final String apiKey = 'api_key=$api_key';
 
   Future<List<Results>> getPopularMovie() async {
     try {
