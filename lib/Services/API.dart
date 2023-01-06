@@ -8,7 +8,7 @@ class APIService {
 
   Future<List<Results>> getPopularMovie() async {
     try {
-      final url = '$baseUrl/movie/popular?$apiKey';
+      final url = '$baseUrl/movie/popular?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
       List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
