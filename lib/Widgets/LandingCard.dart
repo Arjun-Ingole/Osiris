@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osiris/Services/consts.dart';
 
 class LandingCard extends StatelessWidget {
   LandingCard(this.image, this.name, {super.key});
@@ -20,27 +21,28 @@ class LandingCard extends StatelessWidget {
                 image: DecorationImage(fit: BoxFit.cover, image: image)),
           ),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.center,
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    Color(0x99111015),
-                    Color(0xFF111015),
+                    background_primary.withOpacity(0.50),
+                    background_primary.withOpacity(0.75),
+                    background_primary.withOpacity(1.00),
                   ]),
             ),
           ),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.topCenter,
+                  begin: Alignment.topCenter,
+                  end: Alignment.center,
                   colors: [
-                    Colors.transparent,
-                    Colors.transparent,
-                    Color(0x99111015),
-                    Color(0xFF111015),
+                    background_primary.withOpacity(0.80),
+                    background_primary.withOpacity(0.60),
+                    background_primary.withOpacity(0.40),
+                    Colors.transparent
                   ]),
             ),
           ),
