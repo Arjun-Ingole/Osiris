@@ -5,4 +5,5 @@ String footer_text =
 String sign_in_text = "Sign In with Google";
 
 // Theme
-Color background_primary = Color(0xFF111015);
+Color background_primary = const Color(0xFF111015);
+Color accent_secondary = const Color(0xFF00FFD1);
