@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget MovieCard(String title, String url) {
+Widget MovieCard(String title, ImageProvider image) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -10,9 +10,7 @@ Widget MovieCard(String title, String url) {
         width: 100,
         margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
         decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage("https://image.tmdb.org/t/p/w500$url")),
+          image: DecorationImage(fit: BoxFit.cover, image: image),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
