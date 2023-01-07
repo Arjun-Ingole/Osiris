@@ -34,6 +34,19 @@ class APIService {
     }
   }
 
+  Future<List<Results>> getNowPLayingMovie() async {
+    try {
+      final url = '$baseUrl/movie/now_playing?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var movies = response.data['results'] as List;
+      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      return movieList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
   Future<List<TvShow>> getPopularShow() async {
     try {
       final url = '$baseUrl/tv/popular?$apiKey&page=1';
