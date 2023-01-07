@@ -8,11 +8,13 @@ Widget MovieCard(String title, String url) {
       Container(
         height: 150,
         width: 100,
-        margin: EdgeInsets.only(bottom: 4),
+        margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
         decoration: BoxDecoration(
-            image: DecorationImage(image: NetworkImage(url)),
-            borderRadius: BorderRadius.circular(10),
-            ),
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage("https://image.tmdb.org/t/p/w500$url")),
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
       Container(
         width: 100,
@@ -21,6 +23,7 @@ Widget MovieCard(String title, String url) {
           style: TextStyle(color: Colors.white),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
         ),
       )
     ],
