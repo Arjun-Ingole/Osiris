@@ -17,11 +17,11 @@ class CustomCarouselSlider extends StatelessWidget {
           future: future,
           builder: ((context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
+              return PageView.builder(
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
+                pageSnapping: true,
                 itemCount: 20,
-                shrinkWrap: true,
                 itemBuilder: ((context, index) {
                   var url = snapshot.data![index].backdropPath.toString();
                   return LandingCard(
@@ -30,7 +30,7 @@ class CustomCarouselSlider extends StatelessWidget {
                 }),
               );
             } else {
-              return ListView.builder(
+              return PageView.builder(
                   itemCount: 1,
                   itemBuilder: ((context, index) {
                     return LandingCard(
