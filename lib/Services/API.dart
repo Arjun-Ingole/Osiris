@@ -46,4 +46,17 @@ class APIService {
           'Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
+
+  Future<List<TvShow>> getTopRatedShow() async {
+    try {
+      final url = '$baseUrl/tv/top_rated?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var shows = response.data['results'] as List;
+      List<TvShow> showsList = shows.map((m) => TvShow.fromJson(m)).toList();
+      return showsList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
 }
