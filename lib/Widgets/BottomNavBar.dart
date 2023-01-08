@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
+import 'package:flutter/services.dart';
 import 'package:osiris/Services/consts.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -28,6 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               color: _currentIndex == 0 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
+              HapticFeedback.mediumImpact();
               setState(() {
                 _currentIndex = 0;
               });
@@ -39,6 +41,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               color: _currentIndex == 1 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
+              HapticFeedback.mediumImpact();
               setState(() {
                 _currentIndex = 1;
               });
@@ -50,6 +53,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               color: _currentIndex == 2 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
+              HapticFeedback.mediumImpact();
               setState(() {
                 _currentIndex = 2;
               });
