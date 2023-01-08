@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/TvShow.dart';
@@ -25,7 +26,8 @@ class CustomCarouselSlider extends StatelessWidget {
                 itemBuilder: ((context, index) {
                   var url = snapshot.data![index].backdropPath.toString();
                   return LandingCard(
-                      NetworkImage("https://image.tmdb.org/t/p/original$url"),
+                      CachedNetworkImageProvider(
+                          "https://image.tmdb.org/t/p/original$url"),
                       snapshot.data![index].name.toString());
                 }),
               );

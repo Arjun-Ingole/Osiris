@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/TvShow.dart';
 import 'package:osiris/Widgets/MovieCard.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomListMovie extends StatelessWidget {
   CustomListMovie(this.future, {super.key});
@@ -23,8 +24,10 @@ class CustomListMovie extends StatelessWidget {
               cacheExtent: 9999,
               itemBuilder: ((context, index) {
                 var url = snapshot.data![index].posterPath.toString();
-                return MovieCard(snapshot.data![index].title.toString(),
-                    NetworkImage("https://image.tmdb.org/t/p/w500$url"));
+                return MovieCard(
+                    snapshot.data![index].title.toString(),
+                    CachedNetworkImageProvider(
+                        "https://image.tmdb.org/t/p/w500$url"));
               }),
             );
           } else {
