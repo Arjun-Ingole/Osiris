@@ -20,6 +20,7 @@ class CustomListMovie extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemCount: 20,
+              cacheExtent: 9999,
               itemBuilder: ((context, index) {
                 var url = snapshot.data![index].posterPath.toString();
                 return MovieCard(snapshot.data![index].title.toString(),
