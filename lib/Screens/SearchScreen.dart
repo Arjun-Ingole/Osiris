@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:osiris/Services/consts.dart';
+import 'package:osiris/Widgets/BottomNavBar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -10,8 +12,12 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return Scaffold(
+      bottomNavigationBar: BottomNavBar(currentIndex: 1),
+      extendBody: true,
+      body: Container(
+        color: background_primary,
+      ),
     );
   }
 }
