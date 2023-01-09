@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:osiris/Services/consts.dart';
 
 class BottomNavBar extends StatefulWidget {
+  BottomNavBar({Key? key, required this.currentIndex}) : super(key: key);
+  int currentIndex = 0;
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,37 +27,40 @@ class _BottomNavBarState extends State<BottomNavBar> {
           IconButton(
             icon: Icon(
               UniconsLine.home_alt,
-              color: _currentIndex == 0 ? Colors.white : inactive_accent,
+              color: widget.currentIndex == 0 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
               HapticFeedback.mediumImpact();
               setState(() {
-                _currentIndex = 0;
+                widget.currentIndex = 0;
               });
+              Navigator.pushNamed(context, '/main');
             },
           ),
           IconButton(
             icon: Icon(
               UniconsLine.search,
-              color: _currentIndex == 1 ? Colors.white : inactive_accent,
+              color: widget.currentIndex == 1 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
               HapticFeedback.mediumImpact();
               setState(() {
-                _currentIndex = 1;
+                widget.currentIndex = 1;
               });
+              Navigator.pushNamed(context, '/search');
             },
           ),
           IconButton(
             icon: Icon(
               UniconsLine.heart,
-              color: _currentIndex == 2 ? Colors.white : inactive_accent,
+              color: widget.currentIndex == 2 ? Colors.white : inactive_accent,
             ),
             onPressed: () {
               HapticFeedback.mediumImpact();
               setState(() {
-                _currentIndex = 2;
+                widget.currentIndex = 2;
               });
+              Navigator.pushNamed(context, '/profile');
             },
           ),
         ],
