@@ -1,102 +1,5 @@
-class SearchResults {
-  SearchResults({
-    bool? adult,
-    num? gender,
-    num? id,
-    List<KnownFor>? knownFor,
-    String? knownForDepartment,
-    String? mediaType,
-    String? name,
-    num? popularity,
-    String? profilePath,
-  }) {
-    _adult = adult;
-    _gender = gender;
-    _id = id;
-    _knownFor = knownFor;
-    _knownForDepartment = knownForDepartment;
-    _mediaType = mediaType;
-    _name = name;
-    _popularity = popularity;
-    _profilePath = profilePath;
-  }
-
-  SearchResults.fromJson(dynamic json) {
-    _adult = json['adult'];
-    _gender = json['gender'];
-    _id = json['id'];
-    if (json['known_for'] != null) {
-      _knownFor = [];
-      json['known_for'].forEach((v) {
-        _knownFor?.add(KnownFor.fromJson(v));
-      });
-    }
-    _knownForDepartment = json['known_for_department'];
-    _mediaType = json['media_type'];
-    _name = json['name'];
-    _popularity = json['popularity'];
-    _profilePath = json['profile_path'];
-  }
-  bool? _adult;
-  num? _gender;
-  num? _id;
-  List<KnownFor>? _knownFor;
-  String? _knownForDepartment;
-  String? _mediaType;
-  String? _name;
-  num? _popularity;
-  String? _profilePath;
-  SearchResults copyWith({
-    bool? adult,
-    num? gender,
-    num? id,
-    List<KnownFor>? knownFor,
-    String? knownForDepartment,
-    String? mediaType,
-    String? name,
-    num? popularity,
-    String? profilePath,
-  }) =>
-      SearchResults(
-        adult: adult ?? _adult,
-        gender: gender ?? _gender,
-        id: id ?? _id,
-        knownFor: knownFor ?? _knownFor,
-        knownForDepartment: knownForDepartment ?? _knownForDepartment,
-        mediaType: mediaType ?? _mediaType,
-        name: name ?? _name,
-        popularity: popularity ?? _popularity,
-        profilePath: profilePath ?? _profilePath,
-      );
-  bool? get adult => _adult;
-  num? get gender => _gender;
-  num? get id => _id;
-  List<KnownFor>? get knownFor => _knownFor;
-  String? get knownForDepartment => _knownForDepartment;
-  String? get mediaType => _mediaType;
-  String? get name => _name;
-  num? get popularity => _popularity;
-  String? get profilePath => _profilePath;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['adult'] = _adult;
-    map['gender'] = _gender;
-    map['id'] = _id;
-    if (_knownFor != null) {
-      map['known_for'] = _knownFor?.map((v) => v.toJson()).toList();
-    }
-    map['known_for_department'] = _knownForDepartment;
-    map['media_type'] = _mediaType;
-    map['name'] = _name;
-    map['popularity'] = _popularity;
-    map['profile_path'] = _profilePath;
-    return map;
-  }
-}
-
-class KnownFor {
-  KnownFor({
+class SearchResult {
+  SearchResult({
     bool? adult,
     String? backdropPath,
     List<num>? genreIds,
@@ -105,6 +8,7 @@ class KnownFor {
     String? originalLanguage,
     String? originalTitle,
     String? overview,
+    num? popularity,
     String? posterPath,
     String? releaseDate,
     String? title,
@@ -120,6 +24,7 @@ class KnownFor {
     _originalLanguage = originalLanguage;
     _originalTitle = originalTitle;
     _overview = overview;
+    _popularity = popularity;
     _posterPath = posterPath;
     _releaseDate = releaseDate;
     _title = title;
@@ -128,7 +33,7 @@ class KnownFor {
     _voteCount = voteCount;
   }
 
-  KnownFor.fromJson(dynamic json) {
+  SearchResult.fromJson(dynamic json) {
     _adult = json['adult'];
     _backdropPath = json['backdrop_path'];
     _genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
@@ -137,6 +42,7 @@ class KnownFor {
     _originalLanguage = json['original_language'];
     _originalTitle = json['original_title'];
     _overview = json['overview'];
+    _popularity = json['popularity'];
     _posterPath = json['poster_path'];
     _releaseDate = json['release_date'];
     _title = json['title'];
@@ -152,13 +58,14 @@ class KnownFor {
   String? _originalLanguage;
   String? _originalTitle;
   String? _overview;
+  num? _popularity;
   String? _posterPath;
   String? _releaseDate;
   String? _title;
   bool? _video;
   num? _voteAverage;
   num? _voteCount;
-  KnownFor copyWith({
+  SearchResult copyWith({
     bool? adult,
     String? backdropPath,
     List<num>? genreIds,
@@ -167,6 +74,7 @@ class KnownFor {
     String? originalLanguage,
     String? originalTitle,
     String? overview,
+    num? popularity,
     String? posterPath,
     String? releaseDate,
     String? title,
@@ -174,7 +82,7 @@ class KnownFor {
     num? voteAverage,
     num? voteCount,
   }) =>
-      KnownFor(
+      SearchResult(
         adult: adult ?? _adult,
         backdropPath: backdropPath ?? _backdropPath,
         genreIds: genreIds ?? _genreIds,
@@ -183,6 +91,7 @@ class KnownFor {
         originalLanguage: originalLanguage ?? _originalLanguage,
         originalTitle: originalTitle ?? _originalTitle,
         overview: overview ?? _overview,
+        popularity: popularity ?? _popularity,
         posterPath: posterPath ?? _posterPath,
         releaseDate: releaseDate ?? _releaseDate,
         title: title ?? _title,
@@ -198,6 +107,7 @@ class KnownFor {
   String? get originalLanguage => _originalLanguage;
   String? get originalTitle => _originalTitle;
   String? get overview => _overview;
+  num? get popularity => _popularity;
   String? get posterPath => _posterPath;
   String? get releaseDate => _releaseDate;
   String? get title => _title;
@@ -215,6 +125,7 @@ class KnownFor {
     map['original_language'] = _originalLanguage;
     map['original_title'] = _originalTitle;
     map['overview'] = _overview;
+    map['popularity'] = _popularity;
     map['poster_path'] = _posterPath;
     map['release_date'] = _releaseDate;
     map['title'] = _title;
