@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:unicons/unicons.dart';
 import 'package:flutter/services.dart';
 import 'package:osiris/Services/consts.dart';
@@ -34,7 +35,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               setState(() {
                 widget.currentIndex = 0;
               });
-              Navigator.pushNamed(context, '/main');
+              GoRouter.of(context).go('/main');
             },
           ),
           IconButton(
@@ -47,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               setState(() {
                 widget.currentIndex = 1;
               });
-              Navigator.pushNamed(context, '/search');
+              GoRouter.of(context).go('/search');
             },
           ),
           IconButton(
@@ -60,7 +61,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               setState(() {
                 widget.currentIndex = 2;
               });
-              Navigator.pushNamed(context, '/profile');
+              GoRouter.of(context).go('/profile');
             },
           ),
         ],
