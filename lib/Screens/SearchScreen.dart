@@ -21,13 +21,6 @@ class _SearchScreenState extends State<SearchScreen> {
         body: Stack(
           alignment: AlignmentDirectional.topStart,
           children: [
-            // Container(
-            //   width: size.width,
-            //   decoration: const BoxDecoration(
-            //       image: DecorationImage(
-            //           fit: BoxFit.fitWidth,
-            //           image: AssetImage('assets/backdrop.png'))),
-            // ),
             Image.asset(
               'assets/backdrop.png',
               fit: BoxFit.fitWidth,
