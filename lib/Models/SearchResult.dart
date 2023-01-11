@@ -12,6 +12,7 @@ class SearchResult {
     String? posterPath,
     String? releaseDate,
     String? title,
+    String? name,
     bool? video,
     num? voteAverage,
     num? voteCount,
@@ -28,6 +29,7 @@ class SearchResult {
     _posterPath = posterPath;
     _releaseDate = releaseDate;
     _title = title;
+    _name = name;
     _video = video;
     _voteAverage = voteAverage;
     _voteCount = voteCount;
@@ -46,6 +48,7 @@ class SearchResult {
     _posterPath = json['poster_path'];
     _releaseDate = json['release_date'];
     _title = json['title'];
+    _name = json['name'];
     _video = json['video'];
     _voteAverage = json['vote_average'];
     _voteCount = json['vote_count'];
@@ -62,6 +65,7 @@ class SearchResult {
   String? _posterPath;
   String? _releaseDate;
   String? _title;
+  String? _name;
   bool? _video;
   num? _voteAverage;
   num? _voteCount;
@@ -78,6 +82,7 @@ class SearchResult {
     String? posterPath,
     String? releaseDate,
     String? title,
+    String? name,
     bool? video,
     num? voteAverage,
     num? voteCount,
@@ -95,6 +100,7 @@ class SearchResult {
         posterPath: posterPath ?? _posterPath,
         releaseDate: releaseDate ?? _releaseDate,
         title: title ?? _title,
+        name: name ?? _name,
         video: video ?? _video,
         voteAverage: voteAverage ?? _voteAverage,
         voteCount: voteCount ?? _voteCount,
@@ -111,6 +117,7 @@ class SearchResult {
   String? get posterPath => _posterPath;
   String? get releaseDate => _releaseDate;
   String? get title => _title;
+  String? get name => _name;
   bool? get video => _video;
   num? get voteAverage => _voteAverage;
   num? get voteCount => _voteCount;
@@ -129,6 +136,7 @@ class SearchResult {
     map['poster_path'] = _posterPath;
     map['release_date'] = _releaseDate;
     map['title'] = _title;
+    map['name'] = _name;
     map['video'] = _video;
     map['vote_average'] = _voteAverage;
     map['vote_count'] = _voteCount;
