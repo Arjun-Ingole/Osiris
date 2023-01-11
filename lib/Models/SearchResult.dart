@@ -16,6 +16,7 @@ class SearchResult {
     bool? video,
     num? voteAverage,
     num? voteCount,
+    String? profilePath,
   }) {
     _adult = adult;
     _backdropPath = backdropPath;
@@ -33,6 +34,7 @@ class SearchResult {
     _video = video;
     _voteAverage = voteAverage;
     _voteCount = voteCount;
+    _profilePath = profilePath;
   }
 
   SearchResult.fromJson(dynamic json) {
@@ -52,6 +54,7 @@ class SearchResult {
     _video = json['video'];
     _voteAverage = json['vote_average'];
     _voteCount = json['vote_count'];
+    _profilePath = json['profile_path'];
   }
   bool? _adult;
   String? _backdropPath;
@@ -69,6 +72,7 @@ class SearchResult {
   bool? _video;
   num? _voteAverage;
   num? _voteCount;
+  String? _profilePath;
   SearchResult copyWith({
     bool? adult,
     String? backdropPath,
@@ -86,6 +90,7 @@ class SearchResult {
     bool? video,
     num? voteAverage,
     num? voteCount,
+    String? profilePath,
   }) =>
       SearchResult(
         adult: adult ?? _adult,
@@ -104,6 +109,7 @@ class SearchResult {
         video: video ?? _video,
         voteAverage: voteAverage ?? _voteAverage,
         voteCount: voteCount ?? _voteCount,
+        profilePath: profilePath ?? _profilePath,
       );
   bool? get adult => _adult;
   String? get backdropPath => _backdropPath;
@@ -121,6 +127,7 @@ class SearchResult {
   bool? get video => _video;
   num? get voteAverage => _voteAverage;
   num? get voteCount => _voteCount;
+  String? get profilePath => _profilePath;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -140,6 +147,7 @@ class SearchResult {
     map['video'] = _video;
     map['vote_average'] = _voteAverage;
     map['vote_count'] = _voteCount;
+    map['profile_path'] = _profilePath;
     return map;
   }
 }
