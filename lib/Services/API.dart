@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:osiris/Models/PopularMovies.dart';
+import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Models/TvShow.dart';
 import 'package:osiris/Services/key.dart';
 
@@ -70,6 +71,22 @@ class APIService {
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<List<SearchResult>> getSearchResult(searchQuery) async {
+    if (searchQuery.toString().isEmpty) {
+      return [];
+    }
+    try {
+      final url = '$baseUrl/search/multi?$apiKey&query=$searchQuery';
+      final response = await _dio.get(url);
+      var shows = response.data['results'] as List;
+      List<SearchResult> showsList =
+          shows.map((m) => SearchResult.fromJson(m)).toList();
+      return showsList;
+    } catch (error) {
+      return [];
     }
   }
 }
