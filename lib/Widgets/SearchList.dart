@@ -18,7 +18,7 @@ class _SearchListState extends State<SearchList> {
     var size = MediaQuery.of(context).size;
     return FutureBuilder(
       future: widget.future,
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           return Container(
             height: size.height * 0.8,
