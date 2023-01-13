@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Widgets/MovieCard.dart';
+import 'package:osiris/Widgets/SearchCard.dart';
 
 class SearchList extends StatefulWidget {
   SearchList(this.future, {super.key});
@@ -23,26 +24,55 @@ class _SearchListState extends State<SearchList> {
           return Container(
             height: size.height * 0.8,
             child: ListView.builder(
+              padding: EdgeInsets.only(top: 0),
               scrollDirection: Axis.vertical,
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                var url = snapshot.data![index].backdropPath;
-                return MovieCard(
-                  snapshot.data![index].title.toString(),
-                  url == null
-                      ? const AssetImage("assets/LoadingImage.png")
-                      : CachedNetworkImageProvider(
-                              "https://image.tmdb.org/t/p/original$url")
-                          as ImageProvider,
-                );
+                if (snapshot.data![index].mediaType == 'movie') {
+                  var url = snapshot.data![index].posterPath;
+                  return SearchCard(
+                      snapshot.data![index].title.toString(),
+                      url == null
+                          ? const AssetImage("assets/LoadingImage.png")
+                          : CachedNetworkImageProvider(
+                                  "https://image.tmdb.org/t/p/original$url")
+                              as ImageProvider,
+                      snapshot.data![index].voteAverage.toString(),
+                      'movie');
+                } else if (snapshot.data![index].mediaType == 'tv') {
+                  var url = snapshot.data![index].posterPath;
+                  return SearchCard(
+                      snapshot.data![index].name.toString(),
+                      url == null
+                          ? const AssetImage("assets/LoadingImage.png")
+                          : CachedNetworkImageProvider(
+                                  "https://image.tmdb.org/t/p/original$url")
+                              as ImageProvider,
+                      snapshot.data![index].voteAverage.toString(),
+                      'tv');
+                } else if (snapshot.data![index].mediaType == 'person') {
+                  var url = snapshot.data![index].profilePath;
+                  return SearchCard(
+                      snapshot.data![index].name.toString(),
+                      url == null
+                          ? const AssetImage("assets/LoadingImage.png")
+                          : CachedNetworkImageProvider(
+                                  "https://image.tmdb.org/t/p/original$url")
+                              as ImageProvider,
+                      snapshot.data![index].popularity.toString(),
+                      'person');
+                } else {
+                  return SearchCard("Loading",
+                      const AssetImage("assets/LoadingImage.png"), "0", 'N/A');
+                }
               },
             ),
           );
         } else {
-          return MovieCard(
-              "Loading", const AssetImage("assets/LoadingImage.png"));
+          return SearchCard("Loading",
+              const AssetImage("assets/LoadingImage.png"), "0", 'N/A');
         }
       },
     );
