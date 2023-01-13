@@ -38,12 +38,12 @@ class _SearchScreenState extends State<SearchScreen> {
               width: size.width,
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: 50,
-                  margin: const EdgeInsets.fromLTRB(8, 28, 8, 20),
+                  margin: const EdgeInsets.fromLTRB(8, 28, 8, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: accent_t.withOpacity(0.95),
