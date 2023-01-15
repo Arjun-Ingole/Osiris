@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:osiris/Services/consts.dart';
 import 'package:osiris/Services/API.dart';
+import 'package:osiris/Services/consts.dart';
 import 'package:osiris/Widgets/BottomNavBar.dart';
 import 'package:osiris/Widgets/CarouselCard.dart';
 import 'package:osiris/Widgets/CustomLists.dart';
@@ -76,7 +76,6 @@ class _MainScreenState extends State<MainScreen>
     APIService().getNowPLayingMovie();
   }
 
-  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     if (isLoading) {
