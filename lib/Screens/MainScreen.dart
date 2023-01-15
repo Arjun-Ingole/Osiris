@@ -15,7 +15,8 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen>
+    with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController = ScrollController();
   bool isVisible = true;
   bool isLoading = true;
@@ -31,6 +32,9 @@ class _MainScreenState extends State<MainScreen> {
     _scrollController = ScrollController();
     _scrollController.addListener(listen);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
