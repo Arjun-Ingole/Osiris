@@ -79,7 +79,18 @@ class _MainScreenState extends State<MainScreen> {
       return const LoadingScreen();
     }
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(currentIndex: 0),
+      bottomNavigationBar: AnimatedBuilder(
+          animation: _scrollController,
+          builder: ((context, child) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.fastLinearToSlowEaseIn,
+              height: isVisible ? 75 : 0,
+              child: BottomNavBar(
+                currentIndex: 0,
+              ),
+            );
+          })),
       extendBody: true,
       body: Container(
         height: size.height,
