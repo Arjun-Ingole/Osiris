@@ -90,6 +90,7 @@ class _MainScreenState extends State<MainScreen> {
           padding: EdgeInsets.zero,
           scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),
+          controller: _scrollController,
           shrinkWrap: true,
           children: [
             CustomCarouselSlider(APIService().getTopRatedShow()),
