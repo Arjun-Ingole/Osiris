@@ -4,6 +4,7 @@ import 'package:osiris/Services/API.dart';
 import 'package:osiris/Widgets/BottomNavBar.dart';
 import 'package:osiris/Widgets/CarouselCard.dart';
 import 'package:osiris/Widgets/CustomLists.dart';
+import 'package:osiris/Widgets/LoadingScreen.dart';
 import 'package:osiris/Widgets/SectionText.dart';
 
 class MainScreen extends StatefulWidget {
@@ -37,6 +38,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    if (isLoading) {
+      return const LoadingScreen();
+    }
     return Scaffold(
       bottomNavigationBar: BottomNavBar(currentIndex: 0),
       extendBody: true,
