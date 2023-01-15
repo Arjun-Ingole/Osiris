@@ -14,6 +14,26 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData().then((_) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+
+  Future<void> fetchData() async {
+    APIService().getTopRatedShow();
+    APIService().getPopularMovie();
+    APIService().getTopRatedMovie();
+    APIService().getPopularShow();
+    APIService().getNowPLayingMovie();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
