@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:osiris/Services/consts.dart';
 import 'package:osiris/Services/API.dart';
 import 'package:osiris/Widgets/BottomNavBar.dart';
@@ -15,6 +16,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  ScrollController _scrollController = ScrollController();
+  bool isVisible = true;
   bool isLoading = true;
 
   @override
@@ -25,6 +28,40 @@ class _MainScreenState extends State<MainScreen> {
         isLoading = false;
       });
     });
+    _scrollController = ScrollController();
+    _scrollController.addListener(listen);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(listen);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void listen() {
+    final direction = _scrollController.position.userScrollDirection;
+    if (direction == ScrollDirection.forward) {
+      show();
+    } else if (direction == ScrollDirection.reverse) {
+      hide();
+    }
+  }
+
+  void show() {
+    if (!isVisible) {
+      (setState(
+        () => isVisible = true,
+      ));
+    }
+  }
+
+  void hide() {
+    if (isVisible) {
+      (setState(
+        () => isVisible = false,
+      ));
+    }
   }
 
   Future<void> fetchData() async {
