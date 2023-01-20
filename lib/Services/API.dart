@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:osiris/Models/MovieDetail.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Models/TvShow.dart';
@@ -87,6 +88,18 @@ class APIService {
       return showsList;
     } catch (error) {
       return [];
+    }
+  }
+
+  Future<MovieDetail> getMovieDetail(String movieId) async {
+    try {
+      final url = '$baseUrl/movie/$movieId?$apiKey';
+      final response = await _dio.get(url);
+      MovieDetail movie = MovieDetail.fromJson(response.data);
+      return movie;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
 }
