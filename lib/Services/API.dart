@@ -157,7 +157,7 @@ class APIService {
           trailerLink = await videosList[i].key.toString();
         }
       }
-      return 'Youtube.com/watch?v=$trailerLink';
+      return 'https://www.youtube.com/watch?v=$trailerLink';
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
