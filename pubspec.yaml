@@ -49,6 +49,7 @@ dependencies:
   unicons: ^2.1.0
   cached_network_image: ^3.2.3
   go_router: ^6.0.1
+  url_launcher: ^6.1.8
 
 dev_dependencies:
   flutter_test:
