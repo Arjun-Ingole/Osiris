@@ -3,6 +3,7 @@ import 'package:osiris/Models/MovieDetail.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Models/TvShow.dart';
+import 'package:osiris/Models/VideoDetails.dart';
 import 'package:osiris/Services/key.dart';
 
 class APIService {
@@ -136,6 +137,27 @@ class APIService {
       var movies = response.data['results'] as List;
       List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<String> getTrailerLink(String movieId) async {
+    try {
+      final url = '$baseUrl/movie/${movieId}/videos?$apiKey';
+      final response = await _dio.get(url);
+      var videos = response.data['results'] as List;
+      List<VideoResults> videosList =
+          videos.map((m) => VideoResults.fromJson(m)).toList();
+      var trailerLink = 'dQw4w9WgXcQ'; // Rick Roll
+      for (var i = 0; i < videosList.length; i++) {
+        if (videosList[i].site == 'YouTube' &&
+            videosList[i].type == 'Trailer') {
+          trailerLink = await videosList[i].key.toString();
+        }
+      }
+      return 'Youtube.com/watch?v=$trailerLink';
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
