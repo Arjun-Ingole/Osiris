@@ -115,4 +115,30 @@ class APIService {
           'Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
+
+  Future<List<Results>> getSimilarMovie(String movieId) async {
+    try {
+      final url = '$baseUrl/movie/${movieId}/similar?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var movies = response.data['results'] as List;
+      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      return movieList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<List<Results>> getRecommendedMovie(String movieId) async {
+    try {
+      final url = '$baseUrl/movie/${movieId}/recommendations?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var movies = response.data['results'] as List;
+      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      return movieList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
 }
