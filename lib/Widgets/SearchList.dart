@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Widgets/MovieCard.dart';
 import 'package:osiris/Widgets/SearchCard.dart';
 
 class SearchList extends StatefulWidget {
-  SearchList(this.future, {super.key});
+  SearchList(this.future, this.scrollController, {super.key});
 
   Future<List<SearchResult>> future;
+  ScrollController scrollController;
 
   @override
   State<SearchList> createState() => _SearchListState();
@@ -27,6 +29,7 @@ class _SearchListState extends State<SearchList> {
             child: ListView.builder(
               padding: EdgeInsets.only(top: 0),
               scrollDirection: Axis.vertical,
+              controller: widget.scrollController,
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.length,
               shrinkWrap: true,
@@ -35,6 +38,7 @@ class _SearchListState extends State<SearchList> {
                   var url = snapshot.data![index].posterPath;
                   return GestureDetector(
                     onTap: () {
+                      HapticFeedback.mediumImpact();
                       GoRouter.of(context)
                           .push('/movie/${snapshot.data![index].id}');
                     },
@@ -52,6 +56,7 @@ class _SearchListState extends State<SearchList> {
                   var url = snapshot.data![index].posterPath;
                   return GestureDetector(
                     onTap: () {
+                      HapticFeedback.mediumImpact();
                       GoRouter.of(context)
                           .push('/tv/${snapshot.data![index].id}');
                     },
