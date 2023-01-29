@@ -27,7 +27,9 @@ class CustomListMovie extends StatelessWidget {
                 return MovieCard(
                     snapshot.data![index].title.toString(),
                     CachedNetworkImageProvider(
-                        "https://image.tmdb.org/t/p/w500$url"));
+                        "https://image.tmdb.org/t/p/w500$url"),
+                    snapshot.data![index].id.toString(),
+                    "movie");
               }),
             );
           } else {
@@ -37,8 +39,8 @@ class CustomListMovie extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 20,
               itemBuilder: ((context, index) {
-                return MovieCard(
-                    "Loading", const AssetImage("assets/LoadingImage.png"));
+                return MovieCard("Loading",
+                    const AssetImage("assets/LoadingImage.png"), "", "");
               }),
             );
           }
@@ -67,8 +69,11 @@ class CustomListTV extends StatelessWidget {
               itemCount: 20,
               itemBuilder: ((context, index) {
                 var url = snapshot.data![index].posterPath.toString();
-                return MovieCard(snapshot.data![index].name.toString(),
-                    NetworkImage("https://image.tmdb.org/t/p/w500$url"));
+                return MovieCard(
+                    snapshot.data![index].name.toString(),
+                    NetworkImage("https://image.tmdb.org/t/p/w500$url"),
+                    snapshot.data![index].id.toString(),
+                    "tv");
               }),
             );
           } else {
@@ -78,8 +83,8 @@ class CustomListTV extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 20,
               itemBuilder: ((context, index) {
-                return MovieCard(
-                    "Loading", const AssetImage("assets/LoadingImage.png"));
+                return MovieCard("Loading",
+                    const AssetImage("assets/LoadingImage.png"), "", "");
               }),
             );
           }
