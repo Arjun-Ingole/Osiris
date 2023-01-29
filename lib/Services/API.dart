@@ -105,9 +105,9 @@ class APIService {
     }
   }
 
-  Future<List<Genres>> getMovieGenres(String movieId) async {
+  Future<List<Genres>> getMovieGenres(String movieId, String mediaType) async {
     try {
-      final url = '$baseUrl/movie/$movieId?$apiKey';
+      final url = '$baseUrl/$mediaType/$movieId?$apiKey';
       final response = await _dio.get(url);
       var genres = response.data['genres'] as List;
       List<Genres> genresList = genres.map((m) => Genres.fromJson(m)).toList();
@@ -144,9 +144,9 @@ class APIService {
     }
   }
 
-  Future<String> getTrailerLink(String movieId) async {
+  Future<String> getTrailerLink(String movieId, String mediaType) async {
     try {
-      final url = '$baseUrl/movie/${movieId}/videos?$apiKey';
+      final url = '$baseUrl/tv/${movieId}/videos?$apiKey';
       final response = await _dio.get(url);
       var videos = response.data['results'] as List;
       List<VideoResults> videosList =
