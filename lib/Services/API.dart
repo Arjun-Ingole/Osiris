@@ -146,7 +146,7 @@ class APIService {
 
   Future<String> getTrailerLink(String movieId, String mediaType) async {
     try {
-      final url = '$baseUrl/tv/${movieId}/videos?$apiKey';
+      final url = '$baseUrl/$mediaType/${movieId}/videos?$apiKey';
       final response = await _dio.get(url);
       var videos = response.data['results'] as List;
       List<VideoResults> videosList =
