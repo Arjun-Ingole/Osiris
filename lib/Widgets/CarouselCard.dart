@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:osiris/Models/PopularMovies.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:osiris/Models/TvShow.dart';
 import 'package:osiris/Widgets/LandingCard.dart';
 
@@ -25,10 +26,17 @@ class CustomCarouselSlider extends StatelessWidget {
                 itemCount: 20,
                 itemBuilder: ((context, index) {
                   var url = snapshot.data![index].backdropPath.toString();
-                  return LandingCard(
-                      CachedNetworkImageProvider(
-                          "https://image.tmdb.org/t/p/original$url"),
-                      snapshot.data![index].name.toString());
+                  return GestureDetector(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      GoRouter.of(context)
+                          .push('/tv/${snapshot.data![index].id}');
+                    },
+                    child: LandingCard(
+                        CachedNetworkImageProvider(
+                            "https://image.tmdb.org/t/p/original$url"),
+                        snapshot.data![index].name.toString()),
+                  );
                 }),
               );
             } else {
