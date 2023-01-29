@@ -3,6 +3,7 @@ import 'package:osiris/Models/MovieDetail.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/SearchResult.dart';
 import 'package:osiris/Models/TvShow.dart';
+import 'package:osiris/Models/TvShowDetail.dart';
 import 'package:osiris/Models/VideoDetails.dart';
 import 'package:osiris/Services/key.dart';
 
@@ -158,6 +159,18 @@ class APIService {
         }
       }
       return 'https://www.youtube.com/watch?v=$trailerLink';
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<TvShowDetail> getTvShowDetail(String showId) async {
+    try {
+      final url = '$baseUrl/tv/$showId?$apiKey';
+      final response = await _dio.get(url);
+      TvShowDetail show = TvShowDetail.fromJson(response.data);
+      return show;
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
