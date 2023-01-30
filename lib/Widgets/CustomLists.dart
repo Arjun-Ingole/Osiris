@@ -66,7 +66,8 @@ class CustomListTV extends StatelessWidget {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
+              itemCount:
+                  snapshot.data!.length > 20 ? 20 : snapshot.data!.length,
               itemBuilder: ((context, index) {
                 var url = snapshot.data![index].posterPath.toString();
                 return MovieCard(
