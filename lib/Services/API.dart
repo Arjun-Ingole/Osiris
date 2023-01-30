@@ -14,10 +14,11 @@ class APIService {
 
   Future<List<Results>> getPopularMovie() async {
     try {
+      List<Results> movieList = [];
       final url = '$baseUrl/movie/popular?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
-      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -27,10 +28,11 @@ class APIService {
 
   Future<List<Results>> getTopRatedMovie() async {
     try {
+      List<Results> movieList = [];
       final url = '$baseUrl/movie/top_rated?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
-      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -40,10 +42,11 @@ class APIService {
 
   Future<List<Results>> getNowPLayingMovie() async {
     try {
+      List<Results> movieList = [];
       final url = '$baseUrl/movie/now_playing?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
-      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -53,10 +56,11 @@ class APIService {
 
   Future<List<TvShow>> getPopularShow() async {
     try {
+      List<TvShow> showsList = [];
       final url = '$baseUrl/tv/popular?$apiKey&page=1';
       final response = await _dio.get(url);
       var shows = response.data['results'] as List;
-      List<TvShow> showsList = shows.map((m) => TvShow.fromJson(m)).toList();
+      showsList = shows.map((m) => TvShow.fromJson(m)).toList();
       return showsList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -66,10 +70,11 @@ class APIService {
 
   Future<List<TvShow>> getTopRatedShow() async {
     try {
+      List<TvShow> showsList = [];
       final url = '$baseUrl/tv/top_rated?$apiKey&page=1';
       final response = await _dio.get(url);
       var shows = response.data['results'] as List;
-      List<TvShow> showsList = shows.map((m) => TvShow.fromJson(m)).toList();
+      showsList = shows.map((m) => TvShow.fromJson(m)).toList();
       return showsList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -107,10 +112,11 @@ class APIService {
 
   Future<List<Genres>> getMovieGenres(String movieId, String mediaType) async {
     try {
+      List<Genres> genresList = [];
       final url = '$baseUrl/$mediaType/$movieId?$apiKey';
       final response = await _dio.get(url);
       var genres = response.data['genres'] as List;
-      List<Genres> genresList = genres.map((m) => Genres.fromJson(m)).toList();
+      genresList = genres.map((m) => Genres.fromJson(m)).toList();
       return genresList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -120,10 +126,11 @@ class APIService {
 
   Future<List<Results>> getSimilarMovie(String movieId) async {
     try {
+      List<Results> movieList = [];
       final url = '$baseUrl/movie/${movieId}/similar?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
-      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -133,10 +140,11 @@ class APIService {
 
   Future<List<Results>> getRecommendedMovie(String movieId) async {
     try {
+      List<Results> movieList = [];
       final url = '$baseUrl/movie/${movieId}/recommendations?$apiKey&page=1';
       final response = await _dio.get(url);
       var movies = response.data['results'] as List;
-      List<Results> movieList = movies.map((m) => Results.fromJson(m)).toList();
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
       return movieList;
     } catch (error, stacktrace) {
       throw Exception(
@@ -179,10 +187,11 @@ class APIService {
 
   Future<List<TvShow>> getSimilarTvShows(String showId) async {
     try {
+      List<TvShow> showList = [];
       final url = '$baseUrl/tv/$showId/similar?$apiKey&page=1';
       final response = await _dio.get(url);
       var shows = response.data['results'] as List;
-      List<TvShow> showList = shows.map((m) => TvShow.fromJson(m)).toList();
+      showList = shows.map((m) => TvShow.fromJson(m)).toList();
       return showList;
     } catch (error, stacktrace) {
       throw Exception(
