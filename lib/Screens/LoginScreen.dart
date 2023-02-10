@@ -11,60 +11,62 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Container(
-        color: background_primary,
-        child: SafeArea(
-            child: Container(
+    return Scaffold(
+      body: Container(
           color: background_primary,
-          height: size.height,
-          width: size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: size.height * 0.3,
-              ),
-              GifView.asset(
-                "assets/AuthDuck.gif",
-                width: size.width * 0.60,
-                frameRate: 60,
-              ),
-              Center(
-                child: Container(
-                    margin: EdgeInsets.all(24),
-                    width: double.infinity,
-                    height: 72,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        final provider = Provider.of<GoogleSignInProvider>(
-                            context,
-                            listen: false);
-                        provider.googleLogin();
-                      },
-                      icon: const FaIcon(
-                        FontAwesomeIcons.google,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        sign_in_text,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14)),
-                          backgroundColor: Color(0xFF2A292F)),
-                    )),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(28, 0, 28, 24),
-                child: Text(
-                  footer_text,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xFF423E50)),
+          child: SafeArea(
+              child: Container(
+            color: background_primary,
+            height: size.height,
+            width: size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: size.height * 0.3,
                 ),
-              )
-            ],
-          ),
-        )));
+                GifView.asset(
+                  "assets/AuthDuck.gif",
+                  width: size.width * 0.60,
+                  frameRate: 60,
+                ),
+                Center(
+                  child: Container(
+                      margin: EdgeInsets.all(24),
+                      width: double.infinity,
+                      height: 72,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          final provider = Provider.of<GoogleSignInProvider>(
+                              context,
+                              listen: false);
+                          provider.googleLogin();
+                        },
+                        icon: const FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          sign_in_text,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14)),
+                            backgroundColor: Color(0xFF2A292F)),
+                      )),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(28, 0, 28, 24),
+                  child: Text(
+                    footer_text,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Color(0xFF423E50)),
+                  ),
+                )
+              ],
+            ),
+          ))),
+    );
   }
 }
