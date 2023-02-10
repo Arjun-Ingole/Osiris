@@ -10,13 +10,13 @@ class LandingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.33,
+      height: (size.height * 0.33 < 300) ? 300 : size.height * 0.33,
       width: size.width,
       child: Stack(
         children: [
           Container(
             width: size.width,
-            height: size.height * 0.33,
+            height: (size.height * 0.33 < 300) ? 300 : size.height * 0.33,
             decoration: BoxDecoration(
                 image: DecorationImage(fit: BoxFit.cover, image: image)),
           ),
@@ -47,7 +47,8 @@ class LandingCard extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: size.height * 0.28),
+            margin: const EdgeInsets.only(bottom: 24),
+            alignment: Alignment.bottomCenter,
             width: size.width,
             child: Text(
               name,
