@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:osiris/Models/EpisodeDetail.dart';
 import 'package:osiris/Models/MovieDetail.dart';
 import 'package:osiris/Models/PopularMovies.dart';
 import 'package:osiris/Models/SearchResult.dart';
@@ -193,6 +194,34 @@ class APIService {
       var shows = response.data['results'] as List;
       showList = shows.map((m) => TvShow.fromJson(m)).toList();
       return showList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<List<TvShow>> getRecommendedTvShows(String showId) async {
+    try {
+      List<TvShow> showList = [];
+      final url = '$baseUrl/tv/$showId/recommendations?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var shows = response.data['results'] as List;
+      showList = shows.map((m) => TvShow.fromJson(m)).toList();
+      return showList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<List<Episodes>> getEpisodes(String showID, String seasonNum) async {
+    try {
+      List<Episodes> episodeList = [];
+      final url = '$baseUrl/tv/$showID/season/$seasonNum?$apiKey';
+      final response = await _dio.get(url);
+      var shows = response.data['episodes'] as List;
+      episodeList = shows.map((m) => Episodes.fromJson(m)).toList();
+      return episodeList;
     } catch (error, stacktrace) {
       throw Exception(
           'Exception accoured: $error with stacktrace: $stacktrace');
