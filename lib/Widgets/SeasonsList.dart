@@ -31,10 +31,10 @@ class _SeasonsListState extends State<SeasonsList> {
                   return Container(
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Color(0xFF14303B).withOpacity(0.75),
+                      color: const Color(0xFF14303B).withOpacity(0.25),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.85),
+                        color: const Color(0xFFA3A3B0).withOpacity(0.5),
                         width: 0.75,
                       ),
                     ),
