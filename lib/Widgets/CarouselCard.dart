@@ -14,7 +14,7 @@ class CustomCarouselSlider extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.33,
+      height: (size.height * 0.33 < 300) ? 300 : size.height * 0.33,
       child: FutureBuilder(
           future: future,
           builder: ((context, AsyncSnapshot snapshot) {
