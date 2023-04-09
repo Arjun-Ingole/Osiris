@@ -227,4 +227,32 @@ class APIService {
           'Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
+
+  Future<List<Results>> getLatestMovie() async {
+    try {
+      List<Results> movieList = [];
+      final url = '$baseUrl/movie/upcoming?$apiKey&page=1';
+      final response = await _dio.get(url);
+      var movies = response.data['results'] as List;
+      movieList = movies.map((m) => Results.fromJson(m)).toList();
+      return movieList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future<List<TvShow>> getOnAirShows() async {
+    try {
+      List<TvShow> showList = [];
+      final url = '$baseUrl/tv/on_the_air?$apiKey';
+      final response = await _dio.get(url);
+      var shows = response.data['results'] as List;
+      showList = shows.map((m) => TvShow.fromJson(m)).toList();
+      return showList;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
 }
