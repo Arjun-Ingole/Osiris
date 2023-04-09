@@ -7,7 +7,7 @@ import 'package:osiris/Screens/ProfileScreen.dart';
 import 'package:osiris/Screens/SearchScreen.dart';
 import 'package:osiris/Screens/TvShowScreen.dart';
 
-GoRouter router = GoRouter(routes: [
+GoRouter router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/',
     builder: (context, state) => const NavScreen(),
