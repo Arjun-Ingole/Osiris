@@ -15,26 +15,16 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with AutomaticKeepAliveClientMixin {
+class _MainScreenState extends State<MainScreen> {
   ScrollController _scrollController = ScrollController();
   bool isVisible = true;
-  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    fetchData().then((_) {
-      setState(() {
-        isLoading = false;
-      });
-    });
     _scrollController = ScrollController();
     _scrollController.addListener(listen);
   }
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -68,19 +58,8 @@ class _MainScreenState extends State<MainScreen>
     }
   }
 
-  Future<void> fetchData() async {
-    APIService().getTopRatedShow();
-    APIService().getPopularMovie();
-    APIService().getTopRatedMovie();
-    APIService().getPopularShow();
-    APIService().getNowPLayingMovie();
-  }
-
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    if (isLoading) {
-      return const LoadingScreen();
-    }
     return Scaffold(
       bottomNavigationBar: AnimatedBuilder(
           animation: _scrollController,
