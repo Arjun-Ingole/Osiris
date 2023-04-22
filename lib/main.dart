@@ -1,7 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:osiris/Screens/MainScreen.dart';
-import 'package:osiris/Screens/NavScreen.dart';
 import 'package:osiris/Services/auth.dart';
 import 'package:osiris/routes.dart';
 import 'package:provider/provider.dart';
