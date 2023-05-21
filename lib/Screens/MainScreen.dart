@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:osiris/Models/PopularMovies.dart';
+import 'package:osiris/Models/TvShow.dart';
 import 'package:osiris/Services/API.dart';
 import 'package:osiris/Services/consts.dart';
 import 'package:osiris/Widgets/BottomNavBar.dart';
@@ -19,9 +21,17 @@ class _MainScreenState extends State<MainScreen> {
   ScrollController _scrollController = ScrollController();
   bool isVisible = true;
 
+  late List<Results> popularMovie;
+  late List<Results> topRatedMovie;
+  late List<Results> nowPLayingMovie;
+  late List<TvShow> popularShows;
+  late List<TvShow> topRatedShows;
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
+    fetchData();
     _scrollController = ScrollController();
     _scrollController.addListener(listen);
   }
@@ -58,6 +68,17 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Future<void> fetchData() async {
+    topRatedShows = await APIService().getTopRatedShow();
+    popularMovie = await APIService().getPopularMovie();
+    topRatedMovie = await APIService().getTopRatedMovie();
+    popularShows = await APIService().getRecommendedTvShows("1396");
+    nowPLayingMovie = await APIService().getNowPLayingMovie();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -74,30 +95,31 @@ class _MainScreenState extends State<MainScreen> {
             );
           })),
       extendBody: true,
-      body: Container(
-        height: size.height,
-        width: size.width,
-        color: background_primary,
-        child: ListView(
-          cacheExtent: 9999,
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.vertical,
-          physics: const BouncingScrollPhysics(),
-          controller: _scrollController,
-          shrinkWrap: true,
-          children: [
-            CustomCarouselSlider(APIService().getTopRatedShow()),
-            SectionText("Popular", "Movies"),
-            CustomListMovie(APIService().getPopularMovie()),
-            SectionText("TOP Rated", "Movies"),
-            CustomListMovie(APIService().getTopRatedMovie()),
-            SectionText("Popular", "Shows"),
-            CustomListTV(APIService().getPopularShow()),
-            SectionText("NoW PLAying", "Movies"),
-            CustomListMovie(APIService().getNowPLayingMovie()),
-          ],
-        ),
-      ),
+      body: isLoading
+          ? LoadingScreen()
+          : Container(
+              height: size.height,
+              width: size.width,
+              color: background_primary,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                controller: _scrollController,
+                shrinkWrap: true,
+                children: [
+                  CustomCarouselSlider(topRatedShows),
+                  SectionText("Popular", "Movies"),
+                  CustomListMovie(popularMovie),
+                  SectionText("TOP Rated", "Movies"),
+                  CustomListMovie(topRatedMovie),
+                  SectionText("Popular", "Shows"),
+                  CustomListTV(popularShows),
+                  SectionText("NoW PLAying", "Movies"),
+                  CustomListMovie(nowPLayingMovie),
+                ],
+              ),
+            ),
     );
   }
 }

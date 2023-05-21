@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gif_view/gif_view.dart';
 import 'package:osiris/Services/auth.dart';
 import 'package:osiris/Services/consts.dart';
 import 'package:provider/provider.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -25,10 +25,10 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   height: size.height * 0.3,
                 ),
-                GifView.asset(
-                  "assets/AuthDuck.gif",
+                Lottie.asset(
+                  "assets/AuthDuck.json",
                   width: size.width * 0.60,
-                  frameRate: 60,
+                  frameRate: FrameRate(60),
                 ),
                 Center(
                   child: Container(

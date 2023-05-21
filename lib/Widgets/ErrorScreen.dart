@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gif_view/gif_view.dart';
+import 'package:lottie/lottie.dart';
 import 'package:osiris/Services/consts.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -13,12 +13,12 @@ class ErrorScreen extends StatelessWidget {
       width: size.width,
       color: background_primary,
       child: Center(
-          child: GifView(
-        width: size.width * 0.5,
-        frameRate: 60,
-        filterQuality: FilterQuality.high,
-        image: AssetImage('assets/ErrorDuck.gif'),
-      )),
+        child: Lottie.asset(
+          "assets/ErrorDuck.json",
+          width: size.width * 0.5,
+          frameRate: FrameRate(60),
+        ),
+      ),
     );
   }
 }
