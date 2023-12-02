@@ -76,4 +76,4 @@ flutter run
 
 ## License
 
-Hapii is licensed under the MIT License. See LICENSE for more information.
+Osiris is licensed under the MIT License. See LICENSE for more information.
